@@ -28,11 +28,11 @@ namespace Mohejj.Controllers
 
         public class WeatherForecast
         {
-            public string DateFormatted { get; set; }
-            public int TemperatureC { get; set; }
-            public string Summary { get; set; }
+            public string name { get; set; }
+            public int moneyForgin { get; set; }
+            public string summary { get; set; }
 
-            public int TemperatureF
+            public int moneySar
             {
                 get
                 {
