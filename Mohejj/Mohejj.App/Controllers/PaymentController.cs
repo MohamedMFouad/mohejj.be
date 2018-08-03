@@ -1,4 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -26,8 +29,8 @@ namespace Mohejj.Controllers
         {
             _configuration = configuration;
             _hostingEnvironment = hostingEnvironment;
-            _accountSid = "22a6a89c";
-            _authToken = "asZN4GwsKiXyjoPg";
+            _accountSid = _configuration["AppSettings:accountSid"];
+            _authToken = _configuration["AppSettings:authToken"];
         }
 
         /// <summary>
@@ -40,8 +43,8 @@ namespace Mohejj.Controllers
         [HttpPost("[action]/{custId}/{amount}/{verified}")]
         public IActionResult Pay(int custId, int amount, bool verified)
         {
-            //string wwwrootPath = _hostingEnvironment.WebRootPath;
-            //string path = string.Format(wwwrootPath + @"\Data\customers.json");
+            string wwwrootPath = _hostingEnvironment.WebRootPath;
+            string path = string.Format(wwwrootPath + @"\Data\customers.json");
 
             //using (StreamReader r = new StreamReader(string.Format(wwwrootPath + @"\Data\customers.json")))
             //{
@@ -71,9 +74,9 @@ namespace Mohejj.Controllers
             {
                 from = "Acme Inc",
                 to = "+966541700674",
-                text = "From Mohejj: " + DateTime.Now.ToShortDateString() + " Bracelete Payment Done Successfully " + amount + " SAR Your Available balanace 2000 SAR."
+                text = "Payment Done Successfully!!"
             });
-            return Content(string.Format("success", "application/json"));
+            return Ok("success");
         }
     }
 }

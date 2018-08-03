@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using QRCoder;
 
-namespace Mohejj.Controllers
+namespace Mohejj.App.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,7 +21,7 @@ namespace Mohejj.Controllers
         [HttpGet("{custId}")]
         public async Task<IActionResult> GenerateQrCode(int custId)
         {
-            string url = "http://localhost:44319";
+            string url = "http://mohejj.azurewebsites.net/api/Payment/Pay/" + custId + "/30/true";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);

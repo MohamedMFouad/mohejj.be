@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Mohejj.Models
 {
-    public class Success
+    public class Customer
     {
-
+        public int Id { get; set; }
+        public int Credit { get; set; }
     }
 }
